@@ -70,6 +70,25 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
+    lspconfig.gopls.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      filetypes = { "go", "gomod" },
+      root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+          -- goimports = true,
+          gofumpt = true,
+          usePlaceholders = true,
+          completeUnimported = true,
+        },
+      },
+    })
+
     -- configure html server
     lspconfig["html"].setup({
       capabilities = capabilities,

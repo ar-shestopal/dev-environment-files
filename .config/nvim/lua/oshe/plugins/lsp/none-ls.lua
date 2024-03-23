@@ -19,6 +19,8 @@ return {
         "black", -- python formatter
         "pylint", -- python linter
         "eslint_d", -- js linter
+        "gofumpt", -- go formatter
+        "goimports", -- go formatter
       },
     })
 
@@ -30,9 +32,10 @@ return {
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
     -- configure null_ls
+    --
     null_ls.setup({
       -- add package.json as identifier for root (for typescript monorepos)
-      root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
+      root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json", "go.mod"),
       -- setup formatters & linters
       sources = {
         --  to disable file types use
@@ -43,6 +46,8 @@ return {
         formatting.stylua, -- lua formatter
         formatting.isort,
         formatting.black,
+        formatting.gofumpt,
+        formatting.goimports,
         diagnostics.pylint,
         diagnostics.eslint_d.with({ -- js/ts linter
           condition = function(utils)

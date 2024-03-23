@@ -34,6 +34,7 @@ return {
         "lua_ls",
         "graphql",
         "solargraph",
+        "gopls",
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
@@ -44,6 +45,8 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "eslint_d", -- js linter
+        "gofumpt", -- go formatter
+        "goimports", -- go formatter
       },
     })
   end,
