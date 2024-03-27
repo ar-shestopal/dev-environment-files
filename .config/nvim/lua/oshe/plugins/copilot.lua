@@ -5,11 +5,10 @@
 --
 return {
   "zbirenbaum/copilot.lua",
-  event = { "InsertEnter" },
+  event = { "InsertEnter", "BufReadPre", "BufNewFile" },
   cmd = "Copilot",
   build = ":Copilot auth",
   opts = {
-    suggestion = { enabled = true, auto_trigger = true },
     panel = { enabled = false },
     -- filetypes = {
     --   markdown = true,
@@ -18,6 +17,12 @@ return {
   },
 
   config = function()
-    require("copilot").setup({})
+    require("copilot").setup({
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        debounce = 75,
+      },
+    })
   end,
 }
