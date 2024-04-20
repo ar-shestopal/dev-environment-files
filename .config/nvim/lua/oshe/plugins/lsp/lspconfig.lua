@@ -74,7 +74,7 @@ return {
       on_attach = on_attach,
       capabilities = capabilities,
       filetypes = { "go", "gomod" },
-      root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
+      root_dir = lspconfig.util.root_pattern("go.mod", "go.work", ".git"),
       settings = {
         gopls = {
           analyses = {
@@ -87,6 +87,11 @@ return {
           completeUnimported = true,
         },
       },
+    })
+
+    lspconfig["solargraph"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
     })
 
     -- configure html server
